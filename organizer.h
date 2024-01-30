@@ -6,7 +6,7 @@
 #include <string>
 
 /**
- * @brief Klasa reprezentuj¹ca osobê w organizerze.
+ * @brief Klasa reprezentujÄ…ca osobÄ™ w organizerze.
  */
 class Osoba {
 public:
@@ -14,19 +14,19 @@ public:
     /**
      * @brief Konstruktor klasy Osoba.
      *
-     * @param imie Imiê osoby.
+     * @param imie ImiÄ™ osoby.
      * @param nazwisko Nazwisko osoby.
      * @param email Adres email osoby.
      */
     Osoba(const std::string& imie, const std::string& nazwisko, const std::string& email);
 
     /**
-     * @brief Pobiera pe³ne informacje o osobie.
+     * @brief Pobiera peÅ‚ne informacje o osobie.
      *
-     * @return Pe³ne informacje o osobie.
+     * @return PeÅ‚ne informacje o osobie.
      */
     std::string pelneInfo() const;
-    
+
     /**
      * @brief Pobiera adres email osoby.
      *
@@ -41,11 +41,11 @@ private:
 };
 
 /**
- * @brief Klasa reprezentuj¹ca zadanie w organizerze.
+ * @brief Klasa reprezentujÄ…ca zadanie w organizerze.
  */
 class Zadanie {
 public:
-    
+
     /**
      * @brief Konstruktor klasy Zadanie.
      *
@@ -57,12 +57,12 @@ public:
     Zadanie(const std::string& data, const std::string& typ, const std::string& status, const std::string& opis);
 
     /**
-     * @brief Pobiera pe³ne informacje o zadaniu.
+     * @brief Pobiera peÅ‚ne informacje o zadaniu.
      *
-     * @return Pe³ne informacje o zadaniu.
+     * @return PeÅ‚ne informacje o zadaniu.
      */
     int getNumer() const;
-    
+
     /**
      * @brief Pobiera numer zadania.
      *
@@ -76,9 +76,9 @@ public:
      * @param numer Nowy numer zadania.
      */
     std::string pelneInfo() const;
-    
+
     /**
-     * @brief Pobiera datê zadania.
+     * @brief Pobiera datÄ™ zadania.
      *
      * @return Data zadania.
      */
@@ -114,28 +114,30 @@ private:
 };
 
 /**
- * @brief Klasa reprezentuj¹ca organizer.
+ * @brief Klasa reprezentujÄ…ca organizer.
  */
 class Organizator {
 public:
+    Organizator();
+
     /**
-     * @brief Dodaje now¹ osobê do listy kontaktów.
+     * @brief Dodaje nowÄ… osobÄ™ do listy kontaktÃ³w.
      *
-     * @param imie Imiê osoby.
+     * @param imie ImiÄ™ osoby.
      * @param nazwisko Nazwisko osoby.
      * @param email Adres email osoby.
      */
     void dodajOsobe(const std::string& imie, const std::string& nazwisko, const std::string& email);
 
     /**
-     * @brief Usuwa osobê z listy kontaktów na podstawie adresu email.
+     * @brief Usuwa osobÄ™ z listy kontaktÃ³w na podstawie adresu email.
      *
-     * @param email Adres email osoby do usuniêcia.
+     * @param email Adres email osoby do usuniÄ™cia.
      */
     void usunOsobe(const std::string& email);
 
     /**
-     * @brief Dodaje nowe zadanie do listy zadañ.
+     * @brief Dodaje nowe zadanie do listy zadaÅ„.
      *
      * @param data Data zadania.
      * @param typ Typ zadania.
@@ -145,9 +147,9 @@ public:
     void dodajZadanie(const std::string& data, const std::string& typ, const std::string& status, const std::string& opis);
 
     /**
-     * @brief Usuwa zadanie z listy zadañ na podstawie numeru.
+     * @brief Usuwa zadanie z listy zadaÅ„ na podstawie numeru.
      *
-     * @param numer Numer zadania do usuniêcia.
+     * @param numer Numer zadania do usuniÄ™cia.
      */
     void usunZadanie(int numer);
 
@@ -160,47 +162,53 @@ public:
     void zmienStatusZadania(int numer, const std::string& nowyStatus);
 
     /**
-     * @brief Wyœwietla posortowan¹ listê kontaktów.
+     * @brief WyÅ›wietla posortowanÄ… listÄ™ kontaktÃ³w.
      */
     void wyswietlPosortowaneOsoby() const;
 
     /**
-     * @brief Filtrowanie listy kontaktów.
+     * @brief Filtrowanie listy kontaktÃ³w.
      *
      * @param kryterium Kryterium filtrowania.
      */
     void filtrujKontakty(const std::string& kryterium);
 
     /**
-     * @brief Wyœwietla posortowan¹ listê zadañ.
+     * @brief WyÅ›wietla posortowanÄ… listÄ™ zadaÅ„.
      */
     void wyswietlPosortowaneZadania() const;
 
     /**
-     * @brief Filtrowanie listy zadañ.
+     * @brief Filtrowanie listy zadaÅ„.
      *
      * @param kryterium Kryterium filtrowania.
      */
     void filtrujZadania(const std::string& kryterium);
 
     /**
-   * @brief Wyœwietla listê zadañ.
+   * @brief WyÅ›wietla listÄ™ zadaÅ„.
    */
     void wyswietlZadania() const;
 
     /**
-     * @brief Wyœwietla posortowan¹ listê zadañ.
+     * @brief WyÅ›wietla posortowanÄ… listÄ™ zadaÅ„.
      */
+
+    void dodajZadanie(const std::string& task);
+    void zapiszZadaniaDoPliku(const std::string& filename) const;
+    void wczytajZadaniaZPliku(const std::string& filename);
 
 private:
     std::vector<Osoba> kontakty;
     std::vector<Zadanie> zadania;
+    std::vector<std::string> tasks;
+    std::vector<std::string> contacts;
 
     /**
-     * @brief Funkcja pomocnicza do konwersji ci¹gu znaków na ma³e litery.
+     * @brief Funkcja pomocnicza do konwersji ciÄ…gu znakÃ³w na maÅ‚e litery.
      *
-     * @param str Ci¹g znaków do konwersji.
-     * @return Skonwertowany ci¹g znaków.
+     * @param str CiÄ…g znakÃ³w do konwersji.
+     * @return Skonwertowany ciÄ…g znakÃ³w.
      */
     std::string toLowerCase(const std::string& str);
 };
