@@ -1,12 +1,11 @@
 #include "organizer.h"
 #include <algorithm>
 #include <iostream>
-
-// Implementacja klasy Osoba
+#include <fstream>
 
 /**
  * @brief Konstruktor klasy Osoba.
- * @param imie Imiê osoby.
+ * @param imie ImiÄ™ osoby.
  * @param nazwisko Nazwisko osoby.
  * @param email Adres email osoby.
  */
@@ -14,8 +13,8 @@ Osoba::Osoba(const std::string& imie, const std::string& nazwisko, const std::st
     : imie(imie), nazwisko(nazwisko), email(email) {}
 
 /**
- * @brief Zwraca pe³ne informacje o osobie.
- * @return Pe³ne informacje o osobie.
+ * @brief Zwraca peÅ‚ne informacje o osobie.
+ * @return PeÅ‚ne informacje o osobie.
  */
 std::string Osoba::pelneInfo() const {
     return imie + " " + nazwisko;
@@ -29,7 +28,7 @@ std::string Osoba::getEmail() const {
     return email;
 }
 
-// Implementacja klasy Zadanie
+
 
 /**
  * @brief Konstruktor klasy Zadanie.
@@ -44,8 +43,8 @@ Zadanie::Zadanie(const std::string& data, const std::string& typ, const std::str
 
 
 /**
- * @brief Zwraca pe³ne informacje o zadaniu.
- * @return Pe³ne informacje o zadaniu.
+ * @brief Zwraca peÅ‚ne informacje o zadaniu.
+ * @return PeÅ‚ne informacje o zadaniu.
  */
 int Zadanie::getNumer() const {
     return numer;
@@ -60,15 +59,15 @@ void Zadanie::setNumer(int numer) {
 }
 
 /**
- * @brief Zwraca pe³ne informacje o zadaniu.
- * @return Pe³ne informacje o zadaniu.
+ * @brief Zwraca peÅ‚ne informacje o zadaniu.
+ * @return PeÅ‚ne informacje o zadaniu.
  */
 std::string Zadanie::pelneInfo() const {
     return "Zadanie #" + std::to_string(numer) + " [" + data + "]: " + typ + " - " + status + "\nOpis: " + opis;
 }
 
 /**
- * @brief Zwraca datê zadania.
+ * @brief Zwraca datÄ™ zadania.
  * @return Data zadania.
  */
 std::string Zadanie::getData() const {
@@ -99,11 +98,12 @@ void Zadanie::setStatus(const std::string& status) {
     this->status = status;
 }
 
-// Implementacja klasy Organizator
+
+Organizator::Organizator() {}
 
 /**
- * @brief Dodaje now¹ osobê do listy kontaktów.
- * @param osoba Obiekt klasy Osoba reprezentuj¹cy now¹ osobê.
+ * @brief Dodaje nowÄ… osobÄ™ do listy kontaktÃ³w.
+ * @param osoba Obiekt klasy Osoba reprezentujÄ…cy nowÄ… osobÄ™.
  */
 void Organizator::dodajOsobe(const std::string& imie, const std::string& nazwisko, const std::string& email) {
     Osoba osoba(imie, nazwisko, email);
@@ -111,8 +111,8 @@ void Organizator::dodajOsobe(const std::string& imie, const std::string& nazwisk
 }
 
 /**
- * @brief Usuwa osobê z listy kontaktów.
- * @param email Adres email osoby do usuniêcia.
+ * @brief Usuwa osobÄ™ z listy kontaktÃ³w.
+ * @param email Adres email osoby do usuniÄ™cia.
  */
 void Organizator::usunOsobe(const std::string& email) {
     auto it = std::remove_if(kontakty.begin(), kontakty.end(),
@@ -121,8 +121,8 @@ void Organizator::usunOsobe(const std::string& email) {
 }
 
 /**
- * @brief Dodaje nowe zadanie do listy zadañ.
- * @param zadanie Obiekt klasy Zadanie reprezentuj¹cy nowe zadanie.
+ * @brief Dodaje nowe zadanie do listy zadaÅ„.
+ * @param zadanie Obiekt klasy Zadanie reprezentujÄ…cy nowe zadanie.
  */
 void Organizator::dodajZadanie(const std::string& data, const std::string& typ, const std::string& status, const std::string& opis) {
     Zadanie zadanie(data, typ, status, opis);
@@ -130,8 +130,8 @@ void Organizator::dodajZadanie(const std::string& data, const std::string& typ, 
 }
 
 /**
- * @brief Usuwa zadanie z listy zadañ.
- * @param numer Numer zadania do usuniêcia.
+ * @brief Usuwa zadanie z listy zadaÅ„.
+ * @param numer Numer zadania do usuniÄ™cia.
  */
 void Organizator::usunZadanie(int numer) {
     auto it = std::remove_if(zadania.begin(), zadania.end(),
@@ -141,7 +141,7 @@ void Organizator::usunZadanie(int numer) {
 
 /**
  * @brief Zmienia status zadania.
- * @param numer Numer zadania, którego status ma byæ zmieniony.
+ * @param numer Numer zadania, ktÃ³rego status ma byÄ‡ zmieniony.
  * @param nowyStatus Nowy status zadania.
  */
 void Organizator::zmienStatusZadania(int numer, const std::string& nowyStatus) {
@@ -153,36 +153,69 @@ void Organizator::zmienStatusZadania(int numer, const std::string& nowyStatus) {
 }
 
 /**
- * @brief Wyswietla posortowan¹ listê osób.
+ * @brief Wyswietla posortowanÄ… listÄ™ osÃ³b.
  */
 void Organizator::wyswietlPosortowaneOsoby() const {
-    // Implementacja wyœwietlania posortowanych kontaktów
+    // wyÅ›wietlanie posortowanych kontaktÃ³w
 }
 
 /**
- * @brief Filtrowanie listy kontaktów wed³ug ró¿nych kryteriów.
- * @param kryterium Kryterium, wed³ug którego ma byæ wykonane filtrowanie.
+ * @brief Filtrowanie listy kontaktÃ³w wedÅ‚ug rÃ³Å¼nych kryteriÃ³w.
+ * @param kryterium Kryterium, wedÅ‚ug ktÃ³rego ma byÄ‡ wykonane filtrowanie.
  */
 void Organizator::filtrujKontakty(const std::string& kryterium) {
-    // Implementacja filtrowania kontaktów
+    //filtrowanie kontaktÃ³w
 }
 
 /**
- * @brief Wyswietla posortowan¹ listê zadañ wed³ug ró¿nych kryteriów.
+ * @brief Wyswietla posortowanÄ… listÄ™ zadaÅ„ wedÅ‚ug rÃ³Å¼nych kryteriÃ³w.
  */
 void Organizator::wyswietlPosortowaneZadania() const {
-    // Implementacja wyœwietlania posortowanych zadañ
+    //wyÅ›wietlanie posortowanych zadaÅ„
 }
 
 void Organizator::filtrujZadania(const std::string& kryterium) {
-    // Implementacja filtrowania zadañ
+    //filtrowanie zadaÅ„
 }
 
 /**
- * @brief Wyswietla listê zadañ.
+ * @brief Wyswietla listÄ™ zadaÅ„.
  */
+
+void Organizator::dodajZadanie(const std::string& task) {
+    tasks.push_back(task);
+}
+
 void Organizator::wyswietlZadania() const {
-    for (const auto& zadanie : zadania) {
-        std::cout << zadanie.pelneInfo() << "\n";
+    for (const auto& task : tasks) {
+        std::cout << task << std::endl;
+    }
+}
+
+void Organizator::zapiszZadaniaDoPliku(const std::string& filename) const {
+    std::ofstream file(filename);
+    if (file.is_open()) {
+        for (const auto& task : tasks) {
+            file << task << std::endl;
+        }
+        file.close();
+    }
+    else {
+        std::cerr << "Nie moÅ¼na otworzyÄ‡ pliku: " << filename << std::endl;
+    }
+}
+
+void Organizator::wczytajZadaniaZPliku(const std::string& filename) {
+    tasks.clear(); // WczytujÄ…c z pliku czyÅ›ci aktualnÄ… listÄ™ zadaÅ„
+    std::ifstream file(filename);
+    if (file.is_open()) {
+        std::string task;
+        while (std::getline(file, task)) {
+            tasks.push_back(task);
+        }
+        file.close();
+    }
+    else {
+        std::cerr << "Nie moÅ¼na otworzyÄ‡ pliku: " << filename << std::endl;
     }
 }
