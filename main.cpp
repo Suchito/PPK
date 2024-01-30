@@ -2,25 +2,27 @@
 #include <string>
 #include "organizer.h"
 
+
 /**
- * @brief Funkcja wyœwietlaj¹ca menu g³ówne programu.
+ * @brief Funkcja wyÅ›wietlajÄ…ca menu gÅ‚Ã³wne programu.
  */
 void wyswietlMenu();
 
 /**
- * @brief Funkcja wykonuj¹ca akcje zwi¹zane z wyborem u¿ytkownika.
+ * @brief Funkcja wykonujÄ…ca akcje zwiÄ…zane z wyborem uÅ¼ytkownika.
  *
- * @param organizator Obiekt klasy Organizator, na którym bêd¹ wykonywane operacje.
+ * @param organizator Obiekt klasy Organizator, na ktÃ³rym bÄ™dÄ… wykonywane operacje.
  */
 void wykonajAkcje(Organizator& organizator);
 
 /**
- * @brief G³ówna funkcja programu.
+ * @brief GÅ‚Ã³wna funkcja programu.
  *
- * @return Kod zakoñczenia programu.
+ * @return Kod zakoÅ„czenia programu.
  */
 int main() {
     Organizator organizator;
+
 
     do {
         wyswietlMenu();
@@ -110,18 +112,15 @@ void wykonajAkcje(Organizator& organizator) {
         break;
     }
     case 7: {
-        // Obs³uga filtrowania kontaktów
         // ...
         break;
     }
     case 8: {
-        // Obs³uga wyœwietlania posortowanych zadañ
         organizator.wyswietlPosortowaneZadania();
         break;
     }
     case 9: {
-        // Obs³uga filtrowania zadañ
-        // ...
+        //...
         break;
     }
     case 10: {
@@ -138,3 +137,20 @@ void wykonajAkcje(Organizator& organizator) {
     }
     }
 }
+
+class Organizer {
+public:
+    void dodajZadanie(const std::string& task);
+    void usunZadanie(const std::string& task);
+    void wyswietlZadania() const;
+
+    void wczytajZadaniaZPliku(const std::string& filename);
+    void zapiszZadaniaDoPliku(const std::string& filename) const;
+
+    void loadContactsFromFile(const std::string& filename);
+    void saveContactsToFile(const std::string& filename) const;
+
+private:
+    std::vector<std::string> tasks;
+    std::vector<std::string> contacts;
+};
